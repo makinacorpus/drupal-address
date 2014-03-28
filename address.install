@@ -1,0 +1,70 @@
+<?php
+
+/**
+ * @file
+ * Install and uninstall functions for the address module.
+ */
+
+/**
+ * Implements hook_field_schema().
+ */
+function address_field_schema($field) {
+  return array(
+    'columns' => array(
+      'thoroughfare' => array(
+        'description' => 'The thoroughfare of this address. (i.e. Street address)',
+        'type' => 'varchar',
+        'length' => 255,
+        'default' => '',
+        'not null' => FALSE,
+      ),
+      'premise' => array(
+        'description' => 'The premise of this address. (i.e. Apartment / Suite number)',
+        'type' => 'varchar',
+        'length' => 255,
+        'default' => '',
+        'not null' => FALSE,
+      ),
+      'city' => array(
+        'description' => 'The city of this address.',
+        'type' => 'varchar',
+        'length' => 255,
+        'default' => '',
+        'not null' => FALSE,
+      ),
+      'postal_code' => array(
+        'description' => 'The postal code of this address.',
+        'type' => 'int',
+        'not null' => TRUE,
+        'unsigned' => TRUE,
+      ),
+      'insee_code' => array(
+        'description' => 'The INSEE code for city.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+      // City sanitize
+      'city_sanitize' => array(
+        'description' => 'The sanitize city of this address.',
+        'type' => 'varchar',
+        'length' => 255,
+        'default' => '',
+        'not null' => FALSE,
+      ),
+      // Denormalized dept code
+      'dept_code' => array(
+        'type' => 'varchar',
+        'length' => 3,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+    ),
+    'indexes' => array(
+      'postal_code' => array('postal_code'),
+      'dept_code' => array('dept_code'),
+      'city_sanitize' => array('city_sanitize'),
+    ),
+  );
+}

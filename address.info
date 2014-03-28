@@ -1,0 +1,5 @@
+name = French address
+description = "Provide an address field for france country only."
+core = 7.x
+
+dependencies[] = transliteration

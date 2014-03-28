@@ -1,0 +1,49 @@
+<?php
+
+require_once 'address.field.inc';
+
+/**
+ * Implements hook_theme().
+ */
+function address_theme() {
+  return array(
+    'address_formatter' => array(
+      'variables' => array('item' => array()),
+    ),
+  );
+}
+
+/**
+ * Function helper to sanitize a city.
+ */
+function address_normalize_city($city) {
+  return trim(strtolower(preg_replace('/[^a-z0-9]*/i', '', transliteration_get($city))));
+}
+
+/**
+ * Function helper to extract a department code from a postal code.
+ */
+function address_extract_dept_code($postal_code) {
+  $dept_code = '';
+
+  //DOM-TOM exceptions
+  if (strpos($postal_code, '97') === 0 || strpos($postal_code, '98') === 0) {
+    $dept_code = substr($postal_code, 0, 3);
+  }
+  //South corse exceptions
+  elseif ($postal_code >= 20000 && $postal_code <= 20190) {
+    $dept_code = '2A';
+  }
+  //North corse exceptions
+  elseif ($postal_code >= 20200 && $postal_code <= 20620) {
+    $dept_code = '2B';
+  }
+  else {
+    $dept_code = substr($postal_code, 0, 2);
+    if ($dept_code < 10) {
+      $dept_code = '0' . $dept_code;
+    }
+  }
+
+  return $dept_code;
+}
