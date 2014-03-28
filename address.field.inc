@@ -66,6 +66,7 @@ function address_field_widget_form(&$form, &$form_state, $field, $instance, $lan
     '#type' => 'fieldset',
     '#title' => t('Address'),
     '#collapsible' => FALSE,
+    '#element_validate' => array('address_element_validate'),
   );
   $element['thoroughfare'] = array(
     '#type' => 'textfield',
@@ -84,6 +85,7 @@ function address_field_widget_form(&$form, &$form_state, $field, $instance, $lan
     '#title' => t('City'),
     '#default_value' => isset($items[$delta]['city']) ? $items[$delta]['city'] : '',
     '#maxlength' => 255,
+    '#pre_render' => array('address_element_required'),
   );
   $element['postal_code'] = array(
     '#type' => 'textfield',
@@ -92,9 +94,40 @@ function address_field_widget_form(&$form, &$form_state, $field, $instance, $lan
     '#maxlength' => 5,
     '#size' => 5,
     '#element_validate' => array('address_element_validate_postal_code'),
+    '#pre_render' => array('address_element_required'),
   );
 
   return $element;
+}
+
+/**
+ * Pre-render element callback to theme required element.
+ */
+function address_element_required($element) {
+  $element['#required'] = TRUE;
+  return $element;
+}
+
+/**
+ * Address element validate callback.
+ */
+function address_element_validate($element, &$form_state, $form) {
+
+  foreach (element_children($element) as $child) {
+
+    // If at least one child is not empty, postal_code and city must exists.
+    if (!in_array($child, array('city', 'postal_code', '_weight'), TRUE) && !empty($element[$child]['#value'])
+      && (empty($element['city']['#value']) || empty($element['postal_code']['#value']))) {
+
+      if (empty($element['city']['#value'])) {
+        form_error($element['city'], t('%name is required.', array('%name' => $element['city']['#title'])));
+      }
+      if (empty($element['postal_code']['#value'])) {
+        form_error($element['postal_code'], t('%name is required', array('%name' => $element['postal_code']['#title'])));
+      }
+      break;
+    }
+  }
 }
 
 /**
