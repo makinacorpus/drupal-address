@@ -25,6 +25,13 @@ function address_field_schema($field) {
         'default' => '',
         'not null' => FALSE,
       ),
+      'sub_premise' => array(
+        'description' => 'The sub-premise of this address.',
+        'type' => 'varchar',
+        'length' => 255,
+        'default' => '',
+        'not null' => FALSE,
+      ),
       'city' => array(
         'description' => 'The city of this address.',
         'type' => 'varchar',

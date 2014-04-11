@@ -80,6 +80,12 @@ function address_field_widget_form(&$form, &$form_state, $field, $instance, $lan
     '#default_value' => isset($items[$delta]['premise']) ? $items[$delta]['premise'] : '',
     '#maxlength' => 255,
   );
+  $element['sub_premise'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Sub-premise'),
+    '#default_value' => isset($items[$delta]['sub_premise']) ? $items[$delta]['sub_premise'] : '',
+    '#maxlength' => 255,
+  );
   $element['city'] = array(
     '#type' => 'textfield',
     '#title' => t('City'),
@@ -181,7 +187,7 @@ function theme_address_formatter($variables) {
   $output = '';
 
   $output .= '<div class="address">';
-  foreach (array('thoroughfare', 'premise', 'city', 'postal_code') as $element) {
+  foreach (array('thoroughfare', 'premise', 'sub_premise', 'city', 'postal_code') as $element) {
     if (!empty($item[$element])) {
       $output .= '<div class="' . $element . '">' . $item[$element] . '</div>';
     }
