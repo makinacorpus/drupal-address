@@ -70,7 +70,7 @@ function address_field_schema($field) {
     ),
     'indexes' => array(
       'postal_code' => array('postal_code'),
-      'dept_code' => array('dept_code'),
+      'insee_code' => array('insee_code'),
       'city_sanitize' => array('city_sanitize'),
     ),
   );
