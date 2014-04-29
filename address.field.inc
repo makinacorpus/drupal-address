@@ -171,6 +171,8 @@ function address_field_formatter_view($entity_type, $entity, $field, $instance, 
     $element[$delta] = array(
       '#theme' => 'address_formatter',
       '#item' => $item,
+      '#entity' => $entity,
+      '#entity_type' => $entity_type,
     );
   }
 

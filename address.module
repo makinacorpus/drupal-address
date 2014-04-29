@@ -8,7 +8,7 @@ require_once 'address.field.inc';
 function address_theme() {
   return array(
     'address_formatter' => array(
-      'variables' => array('item' => array()),
+      'variables' => array('item' => array(), 'entity' => NULL, 'entity_type' => ''),
     ),
   );
 }
