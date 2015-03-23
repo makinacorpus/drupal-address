@@ -1,0 +1,56 @@
+# $Id$
+#
+# French translation of Drupal (general)
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+# Generated from files:
+#  address.field.inc: n/a
+#  address.info: n/a
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"POT-Creation-Date: 2015-03-23 14:57+0100\n"
+"PO-Revision-Date: 2015-03-23 14:57+0100\n"
+"Last-Translator: NAME <EMAIL@ADDRESS>\n"
+"Language-Team: French <EMAIL@ADDRESS>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n>1);\n"
+
+#: address.field.inc:14;53;67;155
+msgid "Address"
+msgstr "Adresse"
+
+#: address.field.inc:73
+msgid "Thoroughfare"
+msgstr "Rue"
+
+#: address.field.inc:79
+msgid "Premise"
+msgstr "Complément"
+
+#: address.field.inc:85
+msgid "Sub-premise"
+msgstr "Bâtiment, étage"
+
+#: address.field.inc:91
+msgid "City"
+msgstr "Ville"
+
+#: address.field.inc:98
+msgid "Postal code"
+msgstr "Code postal"
+
+#: address.field.inc:129
+msgid "%name is required."
+msgstr "%name est requis."
+
+#: address.field.inc:132
+msgid "%name is required"
+msgstr "%name est requis"
+
+#: address.field.inc:145
+msgid "%name must be a five digit number."
+msgstr "%name doit être un nombre de 5 chiffres."
